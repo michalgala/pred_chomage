@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    container_name: pred_chomagecompose
+    command: uvicorn api:app --host 0.0.0.0 --port 8000 --reload
+    #command: poetry run jupyter notebook --ip 0.0.0.0 --allow-root
+    # ajouter la commande qui lance les dependencies poetry de dev
+    ports:
+      - 8000:8000
+      - 8889:8889
+      - 8888:8888
+    volumes:
+      - ./src:/app
+      - ./pyproject.toml:/app/pyproject.toml
+      # ajouter le volume persistant pour les notebooks
